@@ -220,6 +220,7 @@ function ComparisonPage({ stop, results }: { stop: ItineraryStop; results: Searc
                 results={results}
                 selectedHotelId={selectedHotelId}
                 onHotelSelect={setSelectedHotelId}
+                isVisible={mobileTab === 'map'}
               />
             </div>
           )}

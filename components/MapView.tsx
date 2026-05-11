@@ -19,6 +19,7 @@ interface Props {
   results: SearchResults;
   selectedHotelId: string | null;
   onHotelSelect: (id: string | null) => void;
+  isVisible?: boolean;
 }
 
 export default function MapView(props: Props) {

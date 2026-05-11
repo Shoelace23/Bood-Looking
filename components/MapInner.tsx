@@ -9,6 +9,7 @@ interface Props {
   results: SearchResults;
   selectedHotelId: string | null;
   onHotelSelect: (id: string | null) => void;
+  isVisible?: boolean; // mobile: true quand l'onglet Carte est actif
 }
 
 const AIRBNB_RED = '#FF385C';
@@ -84,10 +85,17 @@ function popupHtml(hotel: HotelResult | AnchorWithVFM, isAnchor: boolean): strin
   </div>`;
 }
 
-export default function MapInner({ results, selectedHotelId, onHotelSelect }: Props) {
+export default function MapInner({ results, selectedHotelId, onHotelSelect, isVisible = true }: Props) {
   const mapRef = useRef<L.Map | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const markersRef = useRef<Map<string, L.Marker>>(new Map());
+
+  /* Recalcule la taille quand le conteneur devient visible (onglet mobile) */
+  useEffect(() => {
+    if (isVisible && mapRef.current) {
+      setTimeout(() => mapRef.current?.invalidateSize(), 50);
+    }
+  }, [isVisible]);
 
   /* Init map */
   useEffect(() => {
