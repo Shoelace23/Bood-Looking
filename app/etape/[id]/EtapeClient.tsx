@@ -149,15 +149,16 @@ function StopDetail({ stop }: { stop: ItineraryStop }) {
   );
 }
 
-/* ── Comparison page (carte en haut, tableau en bas) ───────────────── */
+/* ── Comparison page ───────────────────────────────────────────────── */
 function ComparisonPage({ stop, results }: { stop: ItineraryStop; results: SearchResults }) {
   const [selectedHotelId, setSelectedHotelId] = useState<string | null>(null);
+  const [mobileTab, setMobileTab] = useState<'list' | 'map'>('list');
   const gradient = GRADIENTS[(stop.id - 1) % GRADIENTS.length];
 
   return (
     <div className="flex flex-col h-[calc(100vh-56px)]">
       {/* Stop info strip */}
-      <div className="flex-shrink-0 px-6 py-3 border-b border-neutral-100 bg-white flex items-center gap-3">
+      <div className="flex-shrink-0 px-4 py-3 border-b border-neutral-100 bg-white flex items-center gap-3">
         <div
           className={`h-8 w-8 rounded-full flex items-center justify-center text-sm font-bold text-white shadow flex-shrink-0 bg-gradient-to-br ${gradient}`}
         >
@@ -181,10 +182,34 @@ function ComparisonPage({ stop, results }: { stop: ItineraryStop; results: Searc
         </div>
       </div>
 
-      {/* Split layout */}
+      {/* Mobile tabs — visible uniquement < md */}
+      <div className="flex-shrink-0 flex md:hidden border-b border-neutral-100 bg-white">
+        <button
+          onClick={() => setMobileTab('list')}
+          className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${
+            mobileTab === 'list'
+              ? 'text-neutral-900 border-b-2 border-neutral-900'
+              : 'text-neutral-400'
+          }`}
+        >
+          Liste
+        </button>
+        <button
+          onClick={() => setMobileTab('map')}
+          className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${
+            mobileTab === 'map'
+              ? 'text-neutral-900 border-b-2 border-neutral-900'
+              : 'text-neutral-400'
+          }`}
+        >
+          Carte
+        </button>
+      </div>
+
+      {/* Split layout desktop / tabs mobile */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Left: table scrollable */}
-        <div className="flex-1 overflow-y-auto border-r border-neutral-100">
+        {/* Table — toujours visible sur desktop, conditionnel sur mobile */}
+        <div className={`flex-1 overflow-y-auto border-r border-neutral-100 ${mobileTab === 'map' ? 'hidden md:block' : 'block'}`}>
           <ComparisonTable
             results={results}
             selectedHotelId={selectedHotelId}
@@ -192,8 +217,8 @@ function ComparisonPage({ stop, results }: { stop: ItineraryStop; results: Searc
           />
         </div>
 
-        {/* Right: map sticky */}
-        <div className="w-[700px] flex-shrink-0 relative">
+        {/* Map — toujours visible sur desktop, conditionnel sur mobile */}
+        <div className={`md:w-[700px] md:flex-shrink-0 relative ${mobileTab === 'list' ? 'hidden md:block' : 'flex-1'}`}>
           <MapView
             results={results}
             selectedHotelId={selectedHotelId}
