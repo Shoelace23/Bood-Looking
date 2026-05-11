@@ -155,78 +155,98 @@ function ComparisonPage({ stop, results }: { stop: ItineraryStop; results: Searc
   const [mobileTab, setMobileTab] = useState<'list' | 'map'>('list');
   const gradient = GRADIENTS[(stop.id - 1) % GRADIENTS.length];
 
-  return (
-    <div className="flex flex-col h-[calc(100vh-56px)]">
-      {/* Stop info strip */}
-      <div className="flex-shrink-0 px-4 py-3 border-b border-neutral-100 bg-white flex items-center gap-3">
-        <div
-          className={`h-8 w-8 rounded-full flex items-center justify-center text-sm font-bold text-white shadow flex-shrink-0 bg-gradient-to-br ${gradient}`}
-        >
-          {stop.id}
-        </div>
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2 flex-wrap">
-            <h1 className="text-base font-bold text-neutral-900">{stop.city}</h1>
-            {stop.bookingScore && (
-              <span className="flex items-center gap-1 bg-neutral-100 rounded-full px-2 py-0.5 text-xs font-bold text-neutral-700">
-                <Star className="h-3 w-3 fill-neutral-700" />
-                {stop.bookingScore.toFixed(1)}
-              </span>
-            )}
-            <span className="flex items-center gap-1 text-xs text-neutral-400">
-              <Moon className="h-3 w-3" />
-              {stop.nights} nuits · {formatDateShort(stop.arrivalDate)} → {formatDateShort(stop.departureDate)}
+  /* Info strip partagée */
+  const infoStrip = (
+    <div className="flex-shrink-0 px-4 py-3 border-b border-neutral-100 bg-white flex items-center gap-3">
+      <div className={`h-8 w-8 rounded-full flex items-center justify-center text-sm font-bold text-white shadow flex-shrink-0 bg-gradient-to-br ${gradient}`}>
+        {stop.id}
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2 flex-wrap">
+          <h1 className="text-base font-bold text-neutral-900">{stop.city}</h1>
+          {stop.bookingScore && (
+            <span className="flex items-center gap-1 bg-neutral-100 rounded-full px-2 py-0.5 text-xs font-bold text-neutral-700">
+              <Star className="h-3 w-3 fill-neutral-700" />
+              {stop.bookingScore.toFixed(1)}
             </span>
-          </div>
-          <p className="text-xs text-neutral-400">{stop.hotelName}</p>
+          )}
+          <span className="flex items-center gap-1 text-xs text-neutral-400">
+            <Moon className="h-3 w-3" />
+            {stop.nights} nuits · {formatDateShort(stop.arrivalDate)} → {formatDateShort(stop.departureDate)}
+          </span>
         </div>
-      </div>
-
-      {/* Mobile tabs — visible uniquement < md */}
-      <div className="flex-shrink-0 flex md:hidden border-b border-neutral-100 bg-white">
-        <button
-          onClick={() => setMobileTab('list')}
-          className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${
-            mobileTab === 'list'
-              ? 'text-neutral-900 border-b-2 border-neutral-900'
-              : 'text-neutral-400'
-          }`}
-        >
-          Liste
-        </button>
-        <button
-          onClick={() => setMobileTab('map')}
-          className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${
-            mobileTab === 'map'
-              ? 'text-neutral-900 border-b-2 border-neutral-900'
-              : 'text-neutral-400'
-          }`}
-        >
-          Carte
-        </button>
-      </div>
-
-      {/* Split layout desktop / tabs mobile */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Table — toujours visible sur desktop, conditionnel sur mobile */}
-        <div className={`flex-1 overflow-y-auto border-r border-neutral-100 ${mobileTab === 'map' ? 'hidden md:block' : 'block'}`}>
-          <ComparisonTable
-            results={results}
-            selectedHotelId={selectedHotelId}
-            onHotelSelect={setSelectedHotelId}
-          />
-        </div>
-
-        {/* Map — toujours visible sur desktop, conditionnel sur mobile */}
-        <div className={`md:w-[700px] md:flex-shrink-0 relative ${mobileTab === 'list' ? 'hidden md:block' : 'flex-1'}`}>
-          <MapView
-            results={results}
-            selectedHotelId={selectedHotelId}
-            onHotelSelect={setSelectedHotelId}
-          />
-        </div>
+        <p className="text-xs text-neutral-400">{stop.hotelName}</p>
       </div>
     </div>
+  );
+
+  return (
+    <>
+      {/* ── MOBILE (< md) : onglets Liste / Carte ── */}
+      <div className="flex flex-col md:hidden" style={{ height: 'calc(100vh - 56px)' }}>
+        {infoStrip}
+
+        {/* Onglets */}
+        <div className="flex-shrink-0 flex border-b border-neutral-100 bg-white">
+          <button
+            onClick={() => setMobileTab('list')}
+            style={mobileTab === 'list' ? { borderBottom: '2px solid #171717', color: '#171717' } : { color: '#a3a3a3' }}
+            className="flex-1 py-2.5 text-sm font-semibold"
+          >
+            Liste
+          </button>
+          <button
+            onClick={() => setMobileTab('map')}
+            style={mobileTab === 'map' ? { borderBottom: '2px solid #171717', color: '#171717' } : { color: '#a3a3a3' }}
+            className="flex-1 py-2.5 text-sm font-semibold"
+          >
+            Carte
+          </button>
+        </div>
+
+        {/* Panneau actif */}
+        <div className="flex-1 overflow-hidden">
+          {mobileTab === 'list' ? (
+            <div className="h-full overflow-y-auto">
+              <ComparisonTable
+                results={results}
+                selectedHotelId={selectedHotelId}
+                onHotelSelect={(id) => { setSelectedHotelId(id); setMobileTab('map'); }}
+              />
+            </div>
+          ) : (
+            <div className="h-full w-full relative">
+              <MapView
+                results={results}
+                selectedHotelId={selectedHotelId}
+                onHotelSelect={setSelectedHotelId}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* ── DESKTOP (≥ md) : tableau gauche + carte droite ── */}
+      <div className="hidden md:flex flex-col" style={{ height: 'calc(100vh - 56px)' }}>
+        {infoStrip}
+        <div className="flex flex-1 overflow-hidden">
+          <div className="flex-1 overflow-y-auto border-r border-neutral-100">
+            <ComparisonTable
+              results={results}
+              selectedHotelId={selectedHotelId}
+              onHotelSelect={setSelectedHotelId}
+            />
+          </div>
+          <div className="w-[700px] flex-shrink-0 relative">
+            <MapView
+              results={results}
+              selectedHotelId={selectedHotelId}
+              onHotelSelect={setSelectedHotelId}
+            />
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
