@@ -48,6 +48,9 @@ export interface AnchorWithVFM extends AnchorHotel {
   totalPrice: number;
   lat: number;
   lng: number;
+  address?: string;
+  reviewCount?: number;
+  facilities?: string[];
 }
 
 export interface SearchParams {

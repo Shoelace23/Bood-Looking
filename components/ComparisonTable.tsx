@@ -77,7 +77,13 @@ function AnchorRow({ anchor, nights }: { anchor: AnchorWithVFM; nights: number }
             </div>
             <p className="font-semibold text-sm text-neutral-900 leading-snug">{anchor.name}</p>
             <p className="text-xs text-neutral-500 mt-0.5">{anchor.destination}</p>
-            <ServicePills facilities={anchor.services} />
+            {anchor.address && (
+              <p className="text-xs text-neutral-400 mt-0.5 truncate max-w-[240px]">{anchor.address}</p>
+            )}
+            {anchor.reviewCount != null && anchor.reviewCount > 0 && (
+              <p className="text-xs text-neutral-400">{anchor.reviewCount.toLocaleString()} avis</p>
+            )}
+            <ServicePills facilities={anchor.facilities ?? anchor.services} />
             {anchor.bookingUrl && (
               <a
                 href={anchor.bookingUrl}

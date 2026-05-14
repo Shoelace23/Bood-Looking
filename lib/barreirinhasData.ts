@@ -31,6 +31,9 @@ export const BARREIRINHAS_RESULTS: SearchResults = {
     totalPrice: 289,
     lat: -2.754,
     lng: -42.823,
+    address: 'Rua Inácio Lins, S/N, Barreirinhas',
+    reviewCount: 0,
+    facilities: ['ac', 'parking', 'pool', 'restaurant', 'wifi'],
   },
 
   alternatives: [

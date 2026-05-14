@@ -51,6 +51,9 @@ export const TRANCOSO_RESULTS: SearchResults = {
     totalPrice: 747,
     lat: -16.5905,
     lng: -39.0944,
+    address: 'Rua Nove de Agosto, s/n, Trancoso',
+    reviewCount: 0,
+    facilities: ['ac', 'airport_shuttle', 'gym', 'parking', 'pool', 'spa', 'wifi'],
   },
 
   alternatives: [

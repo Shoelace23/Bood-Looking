@@ -31,6 +31,9 @@ export const PARNABA_RESULTS: SearchResults = {
     totalPrice: 89,
     lat: -2.901,
     lng: -41.779,
+    address: 'Rua Osias Correia, 330, Parnaíba',
+    reviewCount: 0,
+    facilities: ['ac', 'parking', 'wifi'],
   },
 
   alternatives: [
