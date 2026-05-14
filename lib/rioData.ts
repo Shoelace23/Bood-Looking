@@ -1,16 +1,16 @@
 /**
- * Données réelles Booking.com — Rio de Janeiro / Copacabana
- * Recherche MCP effectuée le 11/05/2026
+ * Données réelles Booking.com — Rio de Janeiro
+ * Recherche MCP effectuée le 14/05/2026
  * Ancre : Atlantis Copacabana Hotel · 175 €/nuit · 3★ · note 8.6
- * Dates : 26/07/2026 → 31/07/2026 (5 nuits) · 3 adultes + 1 enfant (15 ans) · ±25 %
- * VFM calculé avec la formule exacte de lib/vfm.ts (calculateVFMScore / calculateAnchorVFM)
+ * Dates : 2026-07-26 → 2026-07-31 (5 nuits) · 3 adultes + 1 enfant (15 ans) · ±25 %
+ * VFM calculé avec la formule exacte de lib/vfm.ts
  */
 
 import { SearchResults } from '@/lib/types';
 
 export const RIO_RESULTS: SearchResults = {
   nights: 5,
-  searchedAt: '2026-05-11T10:55:00Z',
+  searchedAt: '2026-05-14T10:00:00Z',
   isMock: false,
 
   anchor: {
@@ -26,7 +26,6 @@ export const RIO_RESULTS: SearchResults = {
     stars: 3,
     bookingScore: 8.6,
     services: [],
-    // AnchorWithVFM extras
     vfmScore: 68,
     nights: 5,
     totalPrice: 875,
@@ -38,7 +37,6 @@ export const RIO_RESULTS: SearchResults = {
   },
 
   alternatives: [
-    // — Sorted by VFM score desc —
     {
       id: '14752',
       name: 'South American Copacabana Hotel',
@@ -54,14 +52,14 @@ export const RIO_RESULTS: SearchResults = {
       lng: -43.193251,
       bookingUrl: 'https://www.booking.com/hotel/br/south-american-copacabana.html?aid=8132308&checkin=2026-07-26&checkout=2026-07-31&no_rooms=1&group_adults=3&group_children=1&age=15&selected_currency=EUR',
       imageUrl: '',
-      facilities: ['ac', 'gym', 'pool', 'restaurant', 'spa', 'wifi'],
+      facilities: ['ac', 'gym', 'pool', 'restaurant', 'sea_view', 'spa', 'wifi'],
       isAvailable: true,
       vfmScore: 60,
       anchorVfmScore: 68,
       priceVsAnchor: 4.5,
       scoreVsAnchor: -0.3,
-      starsVsAnchor: 0,
-      isBetterDeal: false,
+      starsVsAnchor: 1,
+      isBetterDeal: true,
       priceCategory: 'premium',
     },
     {
@@ -85,7 +83,7 @@ export const RIO_RESULTS: SearchResults = {
       anchorVfmScore: 68,
       priceVsAnchor: 22.5,
       scoreVsAnchor: 0.0,
-      starsVsAnchor: 0,
+      starsVsAnchor: 1,
       isBetterDeal: false,
       priceCategory: 'premium',
     },
@@ -104,13 +102,13 @@ export const RIO_RESULTS: SearchResults = {
       lng: -43.190771,
       bookingUrl: 'https://www.booking.com/hotel/br/windsor-martinique.html?aid=8132308&checkin=2026-07-26&checkout=2026-07-31&no_rooms=1&group_adults=3&group_children=1&age=15&selected_currency=EUR',
       imageUrl: '',
-      facilities: ['ac', 'gym', 'pool', 'restaurant', 'wifi'],
+      facilities: ['ac', 'gym', 'pool', 'restaurant', 'sea_view', 'wifi'],
       isAvailable: true,
       vfmScore: 58,
       anchorVfmScore: 68,
       priceVsAnchor: 2.3,
       scoreVsAnchor: -0.1,
-      starsVsAnchor: -1,
+      starsVsAnchor: 0,
       isBetterDeal: false,
       priceCategory: 'premium',
     },
@@ -135,8 +133,8 @@ export const RIO_RESULTS: SearchResults = {
       anchorVfmScore: 68,
       priceVsAnchor: -14.6,
       scoreVsAnchor: -1.5,
-      starsVsAnchor: 0,
-      isBetterDeal: false,
+      starsVsAnchor: 1,
+      isBetterDeal: true,
       priceCategory: 'high',
     },
     {
@@ -160,7 +158,7 @@ export const RIO_RESULTS: SearchResults = {
       anchorVfmScore: 68,
       priceVsAnchor: 14.3,
       scoreVsAnchor: 0.1,
-      starsVsAnchor: -1,
+      starsVsAnchor: 0,
       isBetterDeal: false,
       priceCategory: 'premium',
     },
@@ -179,13 +177,13 @@ export const RIO_RESULTS: SearchResults = {
       lng: -43.188846,
       bookingUrl: 'https://www.booking.com/hotel/br/benidorm-palace.html?aid=8132308&checkin=2026-07-26&checkout=2026-07-31&no_rooms=1&group_adults=3&group_children=1&age=15&selected_currency=EUR',
       imageUrl: '',
-      facilities: ['ac', 'gym', 'parking', 'wifi'],
+      facilities: ['ac', 'parking', 'wifi'],
       isAvailable: true,
       vfmScore: 57,
       anchorVfmScore: 68,
       priceVsAnchor: 13.2,
       scoreVsAnchor: -0.7,
-      starsVsAnchor: 0,
+      starsVsAnchor: 1,
       isBetterDeal: false,
       priceCategory: 'premium',
     },
@@ -210,8 +208,8 @@ export const RIO_RESULTS: SearchResults = {
       anchorVfmScore: 68,
       priceVsAnchor: -6.0,
       scoreVsAnchor: -1.6,
-      starsVsAnchor: 0,
-      isBetterDeal: false,
+      starsVsAnchor: 1,
+      isBetterDeal: true,
       priceCategory: 'premium',
     },
     {
@@ -235,7 +233,7 @@ export const RIO_RESULTS: SearchResults = {
       anchorVfmScore: 68,
       priceVsAnchor: 4.0,
       scoreVsAnchor: -0.8,
-      starsVsAnchor: -1,
+      starsVsAnchor: 0,
       isBetterDeal: false,
       priceCategory: 'premium',
     },
@@ -260,9 +258,34 @@ export const RIO_RESULTS: SearchResults = {
       anchorVfmScore: 68,
       priceVsAnchor: 21.2,
       scoreVsAnchor: -0.4,
-      starsVsAnchor: -1,
+      starsVsAnchor: 0,
       isBetterDeal: false,
       priceCategory: 'premium',
+    },
+    {
+      id: '2845318',
+      name: 'CLH Suites Domingos Ferreira',
+      stars: 0,
+      bookingScore: 0,
+      reviewCount: 0,
+      pricePerNight: 137.37,
+      totalPrice: 686.84,
+      nights: 5,
+      currency: 'EUR',
+      address: 'Rua Domingos Ferreira 71',
+      lat: -22.971625,
+      lng: -43.18567,
+      bookingUrl: 'https://www.booking.com/hotel/br/clh-suites-copacabana-domingos.html?aid=8132308&checkin=2026-07-26&checkout=2026-07-31&no_rooms=1&group_adults=3&group_children=1&age=15&selected_currency=EUR',
+      imageUrl: '',
+      facilities: ['ac', 'wifi'],
+      isAvailable: true,
+      vfmScore: 19,
+      anchorVfmScore: 68,
+      priceVsAnchor: -21.5,
+      scoreVsAnchor: -8.6,
+      starsVsAnchor: -3,
+      isBetterDeal: false,
+      priceCategory: 'high',
     },
   ],
 };
