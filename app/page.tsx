@@ -49,7 +49,7 @@ function VfmMiniChart({ data }: { data: SearchResults }) {
   const maxVfm = Math.max(...bars.map(b => b.vfm), 80);
 
   return (
-    <div className="flex items-end gap-[2px]" style={{ height: 90 }}>
+    <div className="flex items-end gap-[2px]" style={{ height: 130 }}>
       {bars.map((bar, i) => (
         <div
           key={i}
@@ -148,7 +148,7 @@ export default function HomePage() {
                 className="group block rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Gradient image area */}
-                <div className={`relative h-64 bg-gradient-to-br ${gradient} p-4 flex flex-col justify-between`}>
+                <div className={`relative h-72 bg-gradient-to-br ${gradient} p-4 flex flex-col justify-between`}>
                   {/* Top : badge + nom + dates + score */}
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0">
@@ -183,7 +183,7 @@ export default function HomePage() {
                   {/* Bottom : bar chart VFM */}
                   {stopData
                     ? <VfmMiniChart data={stopData} />
-                    : <div style={{ height: 90 }} />
+                    : <div style={{ height: 130 }} />
                   }
                 </div>
 
