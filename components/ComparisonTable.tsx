@@ -177,7 +177,7 @@ function HotelRow({
           className="inline-flex items-center gap-1 text-xs font-semibold mt-1.5 hover:underline"
           style={{ color: AIRBNB_RED }}
         >
-          Réserver <ExternalLink className="h-3 w-3" />
+          Voir sur Booking <ExternalLink className="h-3 w-3" />
         </a>
       </td>
       {/* Étoiles */}
