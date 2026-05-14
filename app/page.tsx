@@ -49,7 +49,7 @@ function VfmMiniChart({ data }: { data: SearchResults }) {
   const maxVfm = Math.max(...bars.map(b => b.vfm), 80);
 
   return (
-    <div className="flex items-end gap-[2px]" style={{ height: 40 }}>
+    <div className="flex items-end gap-[2px]" style={{ height: 64 }}>
       {bars.map((bar, i) => (
         <div
           key={i}
@@ -148,30 +148,31 @@ export default function HomePage() {
                 className="group block rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Gradient image area */}
-                <div className={`relative h-52 bg-gradient-to-br ${gradient} p-4 flex flex-col justify-between`}>
-                  {/* Top row */}
-                  <div className="flex items-start justify-between">
-                    {/* Stop badge */}
-                    <span
-                      className="h-8 w-8 rounded-full flex items-center justify-center text-sm font-bold text-white shadow"
-                      style={{ background: 'rgba(0,0,0,0.35)' }}
-                    >
-                      {stop.id}
-                    </span>
-
-                    {/* Score */}
+                <div className={`relative h-56 bg-gradient-to-br ${gradient} p-4 flex flex-col justify-between`}>
+                  {/* Top row : badge + nom de l'étape + score */}
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span
+                        className="h-7 w-7 shrink-0 rounded-full flex items-center justify-center text-xs font-bold text-white shadow"
+                        style={{ background: 'rgba(0,0,0,0.35)' }}
+                      >
+                        {stop.id}
+                      </span>
+                      <h2 className="text-lg font-bold text-white drop-shadow leading-tight truncate">
+                        {stop.city}
+                      </h2>
+                    </div>
                     {stop.bookingScore && (
-                      <span className="flex items-center gap-1 bg-white/90 rounded-full px-2 py-0.5 text-xs font-bold text-neutral-900 shadow">
+                      <span className="flex items-center gap-1 bg-white/90 rounded-full px-2 py-0.5 text-xs font-bold text-neutral-900 shadow shrink-0">
                         <Star className="h-3 w-3 fill-neutral-800" />
                         {stop.bookingScore.toFixed(1)}
                       </span>
                     )}
                   </div>
 
-                  {/* Bottom: city + dates + chart */}
+                  {/* Bottom: dates + chart */}
                   <div>
-                    <h2 className="text-xl font-bold text-white drop-shadow">{stop.city}</h2>
-                    <div className="flex items-center gap-2 mt-1 mb-3">
+                    <div className="flex items-center gap-2 mb-2">
                       <span className="text-white/80 text-xs font-medium">
                         {formatDateShort(stop.arrivalDate)} – {formatDateShort(stop.departureDate)}
                       </span>
@@ -180,10 +181,10 @@ export default function HomePage() {
                       </span>
                     </div>
 
-                    {/* Mini VFM bar chart — dans la zone gradient */}
+                    {/* Bar chart VFM */}
                     {stopData
                       ? <VfmMiniChart data={stopData} />
-                      : <div style={{ height: 40 }} />
+                      : <div style={{ height: 64 }} />
                     }
                   </div>
                 </div>
