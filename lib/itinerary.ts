@@ -112,7 +112,7 @@ const rawStops = [
     hotelName: 'Onda Azul',
     city: 'Salvador de Bahia',
     pricePerNight: 78,
-    bookingScore: 8.4,
+    bookingScore: 8.3,
     bookingUrl: 'https://www.booking.com/hotel/br/onda-azul-valenca.fr.html',
     arrival: '17/08/2026',
     departure: '18/08/2026',

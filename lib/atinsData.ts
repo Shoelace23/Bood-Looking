@@ -32,6 +32,9 @@ export const ATINS_RESULTS: SearchResults = {
     totalPrice: 704,
     lat: -2.572,
     lng: -42.747,
+    address: 'Atins Maranhão, Atins',
+    reviewCount: 5,
+    facilities: ['parking', 'pool', 'wifi'],
   },
 
   alternatives: [

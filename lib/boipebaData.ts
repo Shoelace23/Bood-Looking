@@ -32,6 +32,9 @@ export const BOIPEBA_RESULTS: SearchResults = {
     totalPrice: 429,
     lat: -13.580,
     lng: -38.925,
+    address: 'Rua da Praia, 58, Île de Boipeba',
+    reviewCount: 242,
+    facilities: ['breakfast', 'sea_view', 'spa', 'wifi'],
   },
 
   alternatives: [

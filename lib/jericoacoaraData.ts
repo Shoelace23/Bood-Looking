@@ -32,6 +32,9 @@ export const JERICOACOARA_RESULTS: SearchResults = {
     totalPrice: 480,
     lat: -2.796,
     lng: -40.514,
+    address: 'Rua Das Dunas, Nº 4, Jericoacoara',
+    reviewCount: 392,
+    facilities: ['breakfast', 'pool', 'wifi'],
   },
 
   alternatives: [

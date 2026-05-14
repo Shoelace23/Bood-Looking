@@ -1,7 +1,7 @@
 /**
  * Données réelles Booking.com — Rio de Janeiro / Copacabana
  * Recherche MCP effectuée le 11/05/2026
- * Ancre : Atlantis Copacabana Hotel · 175 €/nuit · 4★ · note 8.6
+ * Ancre : Atlantis Copacabana Hotel · 175 €/nuit · 3★ · note 8.6
  * Dates : 26/07/2026 → 31/07/2026 (5 nuits) · 3 adultes + 1 enfant (15 ans) · ±25 %
  * VFM calculé avec la formule exacte de lib/vfm.ts (calculateVFMScore / calculateAnchorVFM)
  */
@@ -23,15 +23,18 @@ export const RIO_RESULTS: SearchResults = {
     bookingUrl: 'https://www.booking.com/hotel/br/atlantis-copacabana.fr.html',
     pricePerNight: 175,
     currency: 'EUR',
-    stars: 4,
+    stars: 3,
     bookingScore: 8.6,
     services: [],
     // AnchorWithVFM extras
-    vfmScore: 72,
+    vfmScore: 68,
     nights: 5,
     totalPrice: 875,
     lat: -22.9694,
     lng: -43.1768,
+    address: 'Rua Bulhões de Carvalho, 61, Ipanema, Rio de Janeiro',
+    reviewCount: 3903,
+    facilities: ['ac', 'breakfast', 'pool', 'spa', 'wifi'],
   },
 
   alternatives: [
@@ -54,7 +57,7 @@ export const RIO_RESULTS: SearchResults = {
       facilities: ['ac', 'gym', 'pool', 'restaurant', 'spa', 'wifi'],
       isAvailable: true,
       vfmScore: 60,
-      anchorVfmScore: 72,
+      anchorVfmScore: 68,
       priceVsAnchor: 4.5,
       scoreVsAnchor: -0.3,
       starsVsAnchor: 0,
@@ -79,7 +82,7 @@ export const RIO_RESULTS: SearchResults = {
       facilities: ['ac', 'gym', 'parking', 'pool', 'restaurant', 'wifi'],
       isAvailable: true,
       vfmScore: 59,
-      anchorVfmScore: 72,
+      anchorVfmScore: 68,
       priceVsAnchor: 22.5,
       scoreVsAnchor: 0.0,
       starsVsAnchor: 0,
@@ -104,7 +107,7 @@ export const RIO_RESULTS: SearchResults = {
       facilities: ['ac', 'gym', 'pool', 'restaurant', 'wifi'],
       isAvailable: true,
       vfmScore: 58,
-      anchorVfmScore: 72,
+      anchorVfmScore: 68,
       priceVsAnchor: 2.3,
       scoreVsAnchor: -0.1,
       starsVsAnchor: -1,
@@ -129,7 +132,7 @@ export const RIO_RESULTS: SearchResults = {
       facilities: ['ac', 'restaurant', 'wifi'],
       isAvailable: true,
       vfmScore: 58,
-      anchorVfmScore: 72,
+      anchorVfmScore: 68,
       priceVsAnchor: -14.6,
       scoreVsAnchor: -1.5,
       starsVsAnchor: 0,
@@ -154,7 +157,7 @@ export const RIO_RESULTS: SearchResults = {
       facilities: ['ac', 'airport_shuttle', 'gym', 'restaurant', 'wifi'],
       isAvailable: true,
       vfmScore: 57,
-      anchorVfmScore: 72,
+      anchorVfmScore: 68,
       priceVsAnchor: 14.3,
       scoreVsAnchor: 0.1,
       starsVsAnchor: -1,
@@ -179,7 +182,7 @@ export const RIO_RESULTS: SearchResults = {
       facilities: ['ac', 'gym', 'parking', 'wifi'],
       isAvailable: true,
       vfmScore: 57,
-      anchorVfmScore: 72,
+      anchorVfmScore: 68,
       priceVsAnchor: 13.2,
       scoreVsAnchor: -0.7,
       starsVsAnchor: 0,
@@ -204,7 +207,7 @@ export const RIO_RESULTS: SearchResults = {
       facilities: ['ac', 'pool', 'restaurant', 'sea_view', 'spa', 'wifi'],
       isAvailable: true,
       vfmScore: 56,
-      anchorVfmScore: 72,
+      anchorVfmScore: 68,
       priceVsAnchor: -6.0,
       scoreVsAnchor: -1.6,
       starsVsAnchor: 0,
@@ -229,7 +232,7 @@ export const RIO_RESULTS: SearchResults = {
       facilities: ['ac', 'gym', 'parking', 'pool', 'wifi'],
       isAvailable: true,
       vfmScore: 55,
-      anchorVfmScore: 72,
+      anchorVfmScore: 68,
       priceVsAnchor: 4.0,
       scoreVsAnchor: -0.8,
       starsVsAnchor: -1,
@@ -254,7 +257,7 @@ export const RIO_RESULTS: SearchResults = {
       facilities: ['ac', 'pool', 'wifi'],
       isAvailable: true,
       vfmScore: 54,
-      anchorVfmScore: 72,
+      anchorVfmScore: 68,
       priceVsAnchor: 21.2,
       scoreVsAnchor: -0.4,
       starsVsAnchor: -1,
