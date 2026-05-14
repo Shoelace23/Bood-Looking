@@ -1,8 +1,73 @@
 import Link from 'next/link';
 import { ITINERARY, TRIP_START, TRIP_END, TRIP_NIGHTS, TRIP_TOTAL } from '@/lib/itinerary';
 import { ChevronRight, Moon, Star } from 'lucide-react';
+import { SearchResults } from '@/lib/types';
+import { RIO_RESULTS }         from '@/lib/rioData';
+import { TRANCOSO_RESULTS }    from '@/lib/trancosoData';
+import { SAO_LUIS_RESULTS }    from '@/lib/saoLuisData';
+import { BARREIRINHAS_RESULTS } from '@/lib/barreirinhasData';
+import { ATINS_RESULTS }       from '@/lib/atinsData';
+import { PARNABA_RESULTS }     from '@/lib/parnabaData';
+import { JERICOACOARA_RESULTS } from '@/lib/jericoacoaraData';
+import { FORTALEZA_RESULTS }   from '@/lib/fortalezaData';
+import { SALVADOR1_RESULTS }   from '@/lib/salvador1Data';
+import { BOIPEBA_RESULTS }     from '@/lib/boipebaData';
+import { SALVADOR2_RESULTS }   from '@/lib/salvador2Data';
 
 const AIRBNB_RED = '#FF385C';
+
+// ── Mapping étape → données SearchResults ────────────────────────────
+const STOP_DATA: Record<number, SearchResults | null> = {
+  1:  RIO_RESULTS,
+  2:  TRANCOSO_RESULTS,
+  3:  null,               // Caraíva — pas de données Booking
+  4:  SAO_LUIS_RESULTS,
+  5:  BARREIRINHAS_RESULTS,
+  6:  ATINS_RESULTS,
+  7:  PARNABA_RESULTS,
+  8:  JERICOACOARA_RESULTS,
+  9:  FORTALEZA_RESULTS,
+  10: SALVADOR1_RESULTS,
+  11: BOIPEBA_RESULTS,
+  12: SALVADOR2_RESULTS,
+};
+
+// ── Mini bar chart VFM (dans la zone gradient) ──────────────────────
+function VfmMiniChart({ data }: { data: SearchResults }) {
+  const anchorVfm = data.anchor.vfmScore;
+
+  // Barres triées par VFM croissant → profil "montant" à droite
+  const bars = [
+    { vfm: anchorVfm, isAnchor: true, isBetterDeal: false },
+    ...data.alternatives.map(a => ({
+      vfm: a.vfmScore,
+      isAnchor: false,
+      isBetterDeal: a.isBetterDeal,
+    })),
+  ].sort((a, b) => a.vfm - b.vfm);
+
+  const maxVfm = Math.max(...bars.map(b => b.vfm), 80);
+
+  return (
+    <div className="flex items-end gap-[2px]" style={{ height: 40 }}>
+      {bars.map((bar, i) => (
+        <div
+          key={i}
+          className="flex-1 rounded-t-[2px]"
+          style={{
+            height: `${Math.max(5, (bar.vfm / maxVfm) * 100)}%`,
+            backgroundColor: bar.isAnchor
+              ? 'rgba(255,255,255,1)'      // ancre : blanc pur
+              : bar.isBetterDeal
+              ? 'rgba(255,255,255,0.60)'   // meilleures offres : blanc 60 %
+              : 'rgba(255,255,255,0.22)',   // autres : blanc 22 %
+          }}
+          title={bar.isAnchor ? `Ancre · VFM ${bar.vfm}` : `Alternative · VFM ${bar.vfm}`}
+        />
+      ))}
+    </div>
+  );
+}
 
 const GRADIENTS = [
   'from-rose-300 to-pink-500',
@@ -73,8 +138,8 @@ export default function HomePage() {
         {/* ── Stop grid ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {ITINERARY.map((stop, idx) => {
-            const gradient = GRADIENTS[idx % GRADIENTS.length];
-            const hasData  = stop.id === 1; // only Rio has comparison data for now
+            const gradient  = GRADIENTS[idx % GRADIENTS.length];
+            const stopData  = STOP_DATA[stop.id] ?? null;
 
             return (
               <Link
@@ -83,7 +148,7 @@ export default function HomePage() {
                 className="group block rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Gradient image area */}
-                <div className={`relative h-44 bg-gradient-to-br ${gradient} p-4 flex flex-col justify-between`}>
+                <div className={`relative h-52 bg-gradient-to-br ${gradient} p-4 flex flex-col justify-between`}>
                   {/* Top row */}
                   <div className="flex items-start justify-between">
                     {/* Stop badge */}
@@ -103,10 +168,10 @@ export default function HomePage() {
                     )}
                   </div>
 
-                  {/* Bottom: city + nights */}
+                  {/* Bottom: city + dates + chart */}
                   <div>
                     <h2 className="text-xl font-bold text-white drop-shadow">{stop.city}</h2>
-                    <div className="flex items-center gap-2 mt-1">
+                    <div className="flex items-center gap-2 mt-1 mb-3">
                       <span className="text-white/80 text-xs font-medium">
                         {formatDateShort(stop.arrivalDate)} – {formatDateShort(stop.departureDate)}
                       </span>
@@ -114,6 +179,12 @@ export default function HomePage() {
                         {stop.nights} nuit{stop.nights > 1 ? 's' : ''}
                       </span>
                     </div>
+
+                    {/* Mini VFM bar chart — dans la zone gradient */}
+                    {stopData
+                      ? <VfmMiniChart data={stopData} />
+                      : <div style={{ height: 40 }} />
+                    }
                   </div>
                 </div>
 
@@ -128,7 +199,7 @@ export default function HomePage() {
                     </p>
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0 ml-3">
-                    {hasData && (
+                    {stopData && (
                       <span
                         className="text-xs font-semibold px-2.5 py-1 rounded-full text-white"
                         style={{ background: AIRBNB_RED }}
