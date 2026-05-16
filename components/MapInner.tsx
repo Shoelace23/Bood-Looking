@@ -62,6 +62,7 @@ function popupHtml(hotel: HotelResult | AnchorWithVFM, isAnchor: boolean): strin
       </div>
       <div style="font-size:16px;font-weight:700;color:#222">${a.pricePerNight}€<span style="font-size:13px;font-weight:400;color:#717171">/nuit</span></div>
       <div style="color:#717171;font-size:12px;margin-top:2px">Total : ${a.totalPrice}€ · ${a.nights} nuits</div>
+      ${a.bookingUrl ? `<a href="${a.bookingUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:${AIRBNB_RED};text-decoration:none">Voir sur Booking ↗</a>` : ''}
     </div>`;
   }
 
@@ -82,6 +83,7 @@ function popupHtml(hotel: HotelResult | AnchorWithVFM, isAnchor: boolean): strin
     <div style="font-size:16px;font-weight:700;color:#222">${h.pricePerNight}€<span style="font-size:13px;font-weight:400;color:#717171">/nuit</span>${pps ? `<span style="font-size:12px;color:#717171;margin-left:8px">${pps}€/★</span>` : ''}</div>
     <div style="color:${diffColor};font-size:12px;font-weight:600;margin-top:3px">${diffText}</div>
     ${h.isBetterDeal ? `<div style="margin-top:6px;background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:4px 8px;font-size:11px;color:#16a34a;font-weight:600">✓ Meilleure offre</div>` : ''}
+    ${h.bookingUrl ? `<a href="${h.bookingUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:${AIRBNB_RED};text-decoration:none">Voir sur Booking ↗</a>` : ''}
   </div>`;
 }
 
