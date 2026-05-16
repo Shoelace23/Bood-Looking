@@ -1,6 +1,6 @@
 /**
  * Données réelles Booking.com — Salvador de Bahia (arrivée 21/08)
- * Recherche MCP effectuée le 14/05/2026
+ * Recherche MCP effectuée le 16/05/2026
  * Ancre : Bahiacafe Hotel · 244 €/nuit · 3★ · note 8.9
  * Dates : 2026-08-21 → 2026-08-22 (1 nuit) · 3 adultes + 1 enfant (15 ans) · ±25 %
  * VFM calculé avec la formule exacte de lib/vfm.ts
@@ -10,7 +10,7 @@ import { SearchResults } from '@/lib/types';
 
 export const SALVADOR2_RESULTS: SearchResults = {
   nights: 1,
-  searchedAt: '2026-05-14T10:00:00Z',
+  searchedAt: '2026-05-16T10:00:00Z',
   isMock: false,
 
   anchor: {
@@ -43,11 +43,11 @@ export const SALVADOR2_RESULTS: SearchResults = {
       stars: 0,
       bookingScore: 0,
       reviewCount: 0,
-      pricePerNight: 194.31,
-      totalPrice: 194.31,
+      pricePerNight: 189.63,
+      totalPrice: 189.63,
       nights: 1,
       currency: 'EUR',
-      address: 'Ladeira De São Miguel,39',
+      address: 'Ladeira De São Miguel, 39',
       lat: -12.974209,
       lng: -38.507854,
       bookingUrl: 'https://www.booking.com/hotel/br/pousada-suites-do-pelo.html?aid=8132308&checkin=2026-08-21&checkout=2026-08-22&no_rooms=1&group_adults=3&group_children=1&age=15&selected_currency=EUR',
@@ -56,7 +56,7 @@ export const SALVADOR2_RESULTS: SearchResults = {
       isAvailable: true,
       vfmScore: 19,
       anchorVfmScore: 70,
-      priceVsAnchor: -20.4,
+      priceVsAnchor: -22.3,
       scoreVsAnchor: -8.9,
       starsVsAnchor: -3,
       isBetterDeal: false,
@@ -68,8 +68,8 @@ export const SALVADOR2_RESULTS: SearchResults = {
       stars: 0,
       bookingScore: 0,
       reviewCount: 0,
-      pricePerNight: 200.81,
-      totalPrice: 200.81,
+      pricePerNight: 195.97,
+      totalPrice: 195.97,
       nights: 1,
       currency: 'EUR',
       address: 'Largo do Pelourinho 05',
@@ -79,9 +79,9 @@ export const SALVADOR2_RESULTS: SearchResults = {
       imageUrl: '',
       facilities: ['ac', 'restaurant', 'wifi'],
       isAvailable: true,
-      vfmScore: 18,
+      vfmScore: 19,
       anchorVfmScore: 70,
-      priceVsAnchor: -17.7,
+      priceVsAnchor: -19.7,
       scoreVsAnchor: -8.9,
       starsVsAnchor: -3,
       isBetterDeal: false,
