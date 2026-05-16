@@ -52,17 +52,17 @@ function popupHtml(hotel: HotelResult | AnchorWithVFM, isAnchor: boolean): strin
 
   if (isAnchor) {
     const a = hotel as AnchorWithVFM;
-    return `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-width:210px">
-      <div style="font-size:11px;font-weight:700;color:${AIRBNB_RED};margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px">Votre référence</div>
-      <div style="font-size:15px;font-weight:700;color:#222;margin-bottom:4px;line-height:1.3">${name}</div>
-      <div style="color:#e5a823;font-size:13px;margin-bottom:6px">${stars}</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
-        <span style="background:#222;color:#fff;border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700">${score}</span>
+    return `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-width:230px;padding:4px 2px">
+      <div style="font-size:11px;font-weight:700;color:${AIRBNB_RED};margin-bottom:7px;text-transform:uppercase;letter-spacing:0.7px">Votre référence</div>
+      <div style="font-size:16px;font-weight:700;color:#222;margin-bottom:5px;line-height:1.35">${name}</div>
+      <div style="color:#e5a823;font-size:14px;margin-bottom:8px;letter-spacing:1px">${stars}</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span style="background:#222;color:#fff;border-radius:6px;padding:3px 10px;font-size:14px;font-weight:700">${score}</span>
         <span style="color:#717171;font-size:12px">Note Booking</span>
       </div>
-      <div style="font-size:16px;font-weight:700;color:#222">${a.pricePerNight}€<span style="font-size:13px;font-weight:400;color:#717171">/nuit</span></div>
-      <div style="color:#717171;font-size:12px;margin-top:2px">Total : ${a.totalPrice}€ · ${a.nights} nuits</div>
-      ${a.bookingUrl ? `<a href="${a.bookingUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:${AIRBNB_RED};text-decoration:none">Voir sur Booking ↗</a>` : ''}
+      <div style="font-size:18px;font-weight:700;color:#222;margin-bottom:3px">${a.pricePerNight}€<span style="font-size:13px;font-weight:400;color:#717171">/nuit</span></div>
+      <div style="color:#717171;font-size:12px;margin-bottom:2px">Total : ${a.totalPrice}€ · ${a.nights} nuit${a.nights > 1 ? 's' : ''}</div>
+      ${a.bookingUrl ? `<div style="margin-top:12px;border-top:1px solid #f0f0f0;padding-top:10px"><a href="${a.bookingUrl}" target="_blank" rel="noopener noreferrer" style="display:block;font-size:13px;font-weight:700;color:${AIRBNB_RED};text-decoration:none;padding:8px 12px;background:#fff5f7;border:1.5px solid ${AIRBNB_RED};border-radius:8px;text-align:center">Voir sur Booking ↗</a></div>` : ''}
     </div>`;
   }
 
@@ -72,18 +72,18 @@ function popupHtml(hotel: HotelResult | AnchorWithVFM, isAnchor: boolean): strin
   const diffText = Math.abs(diff) < 1 ? '= prix ancre' : `${diff > 0 ? '+' : ''}${diff.toFixed(0)}% vs ancre`;
   const pps = h.stars > 0 ? (h.pricePerNight / h.stars).toFixed(0) : null;
 
-  return `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-width:220px">
-    <div style="font-size:15px;font-weight:700;color:#222;margin-bottom:3px;line-height:1.3">${h.name}</div>
-    <div style="color:#717171;font-size:11px;margin-bottom:5px">${h.address}</div>
-    <div style="color:#e5a823;font-size:13px;margin-bottom:5px">${stars}</div>
-    <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
-      <span style="background:#222;color:#fff;border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700">${score}</span>
+  return `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-width:240px;padding:4px 2px">
+    <div style="font-size:16px;font-weight:700;color:#222;margin-bottom:4px;line-height:1.35">${h.name}</div>
+    <div style="color:#717171;font-size:11px;margin-bottom:8px">${h.address}</div>
+    <div style="color:#e5a823;font-size:14px;margin-bottom:8px;letter-spacing:1px">${stars}</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+      <span style="background:#222;color:#fff;border-radius:6px;padding:3px 10px;font-size:14px;font-weight:700">${score}</span>
       <span style="color:#717171;font-size:12px">${h.reviewCount.toLocaleString()} avis</span>
     </div>
-    <div style="font-size:16px;font-weight:700;color:#222">${h.pricePerNight}€<span style="font-size:13px;font-weight:400;color:#717171">/nuit</span>${pps ? `<span style="font-size:12px;color:#717171;margin-left:8px">${pps}€/★</span>` : ''}</div>
-    <div style="color:${diffColor};font-size:12px;font-weight:600;margin-top:3px">${diffText}</div>
-    ${h.isBetterDeal ? `<div style="margin-top:6px;background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:4px 8px;font-size:11px;color:#16a34a;font-weight:600">✓ Meilleure offre</div>` : ''}
-    ${h.bookingUrl ? `<a href="${h.bookingUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:${AIRBNB_RED};text-decoration:none">Voir sur Booking ↗</a>` : ''}
+    <div style="font-size:18px;font-weight:700;color:#222;margin-bottom:4px">${h.pricePerNight}€<span style="font-size:13px;font-weight:400;color:#717171">/nuit</span>${pps ? `<span style="font-size:12px;color:#717171;margin-left:8px">${pps}€/★</span>` : ''}</div>
+    <div style="color:${diffColor};font-size:12px;font-weight:600;margin-bottom:4px">${diffText}</div>
+    ${h.isBetterDeal ? `<div style="margin-top:6px;background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:5px 10px;font-size:11px;color:#16a34a;font-weight:600">✓ Meilleure offre</div>` : ''}
+    ${h.bookingUrl ? `<div style="margin-top:12px;border-top:1px solid #f0f0f0;padding-top:10px"><a href="${h.bookingUrl}" target="_blank" rel="noopener noreferrer" style="display:block;font-size:13px;font-weight:700;color:${AIRBNB_RED};text-decoration:none;padding:8px 12px;background:#fff5f7;border:1.5px solid ${AIRBNB_RED};border-radius:8px;text-align:center">Voir sur Booking ↗</a></div>` : ''}
   </div>`;
 }
 
