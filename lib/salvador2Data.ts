@@ -1,6 +1,6 @@
 /**
  * Données réelles Booking.com — Salvador de Bahia (arrivée 21/08)
- * Recherche MCP effectuée le 19/05/2026
+ * Recherche MCP effectuée le 04/07/2026
  * Ancre : Bahiacafe Hotel · 244 €/nuit · 3★ · note 8.9
  * Dates : 2026-08-21 → 2026-08-22 (1 nuit) · 3 adultes + 1 enfant (15 ans) · ±25 %
  * VFM calculé avec la formule exacte de lib/vfm.ts
@@ -10,7 +10,7 @@ import { SearchResults } from '@/lib/types';
 
 export const SALVADOR2_RESULTS: SearchResults = {
   nights: 1,
-  searchedAt: '2026-05-19T10:00:00Z',
+  searchedAt: '2026-07-04T10:00:00Z',
   isMock: false,
 
   anchor: {
